@@ -1,0 +1,7 @@
+import both existing data and testing unit to db both with excel and csv
+proper result screen with graphs and stats
+
+incorrect data handling
+-duplicates
+-zeroes
+-wrong format
