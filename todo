@@ -1,5 +1,12 @@
-import both existing data and testing unit to db both with excel and csv
+predicting
 proper result screen with graphs and stats
+use k-fold when sample size >= 60
+support for excel files
+
+editing set of genes
+ru/eng languages switch
+polish ui, icon, top bar
+pack it into a click-to-use app
 
 incorrect data handling
 -duplicates
