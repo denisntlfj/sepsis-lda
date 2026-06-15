@@ -1,14 +1,23 @@
-predicting
-proper result screen with graphs and stats
-use k-fold when sample size >= 60
-support for excel files
+### - 10:00
++ui вывод точности
++ui инпут данных тестируемого
++ui вывод предикшна
 
-editing set of genes
-ru/eng languages switch
-polish ui, icon, top bar
-pack it into a click-to-use app
+### - 11:00
+дообучение
+ui дообучения
 
-incorrect data handling
--duplicates
--zeroes
--wrong format
+predicting						                           ### - 11:00
+proper result screen with graphs and stats                 ### - 13:00
+use k-fold when sample size >= 60                          ### - 14:00
+editing set of genes                                       ### - later
+
+support for excel files                                    ### - later
+ru/eng languages switch                                    ### - later
+polish ui, icon, top bar                                   ### - later
+standalone                                                 ### - 20:00
+                                                           
+incorrect data handling                                    ### - 11:00
+-duplicates                                                ### - 11:00
+-zeroes                                                    ### - 11:00
+-wrong format                                              ### - 11:00
