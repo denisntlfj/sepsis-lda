@@ -2,27 +2,42 @@ import pandas as pd
 import numpy as np
 
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
-from sklearn.model_selection import LeaveOneOut
+from sklearn.model_selection import LeaveOneOut, KFold
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import classification_report
 
 
-CSV_PATH = 'data.csv'
-df = pd.read_csv(CSV_PATH)
-#print('db size: ',df.shape)
-
-X = df[['PLAC8', 'CEACAM4', 'LAMP1', 'PLA2G7', 'BETA']]#rewrite this to any given genes, sorted
-y = df['Target']
+#csv edit: place target 1st
+df = pd.read_csv("data.csv")
+X = df.iloc[:,1:]
+y = df.iloc[:,0]
 
 scaler = StandardScaler()
 a = QuadraticDiscriminantAnalysis() 
 
+def ReInitData(data_file):
+
+   df = pd.read_csv(data_file)
+   X = df.iloc[:,1:]
+   y = df.iloc[:,0]
+
+   scaler = StandardScaler()
+   a = QuadraticDiscriminantAnalysis() 
+def Sample():
+    keys = df.keys()[1:]
+    empty_dict = {key: [0.0] for key in keys}
+    empty_df = pd.DataFrame(empty_dict)
+    return empty_df
 
 def Evaluate():
 	y_true = []
 	y_pred = []
-	#cross-validation should usually be k-fold but since we have a poor samplesize using Leave-One-Out for now
-	for train_idx, test_idx in LeaveOneOut().split(X):
+	#if df.shape[0] <= 60:
+	#	
+	#else:
+	#	split_method = KFold()
+	split_method = LeaveOneOut()
+	for train_idx, test_idx in split_method.split(X):
 		X_train, X_test = X.iloc[train_idx], X.iloc[test_idx]
 		y_train, y_test = y.iloc[train_idx], y.iloc[test_idx]
 		
@@ -44,11 +59,11 @@ def Evaluate():
 
 
 def Predict(tested_patient):
-	X_tested = pd.DataFrame(tested_patient, index = [0])
-	X_train_scaled = scaler.fit_transform(X)
-	test_scaled = scaler.transform(X_tested)
-	pred = a.predict(test_scaled)[0]
-#	prob = a.predict_proba(test_scaled)[0]
-	return pred
+    X_tested = pd.DataFrame(tested_patient, index = [0])
+    X_train_scaled = scaler.fit_transform(X)
+    test_scaled = scaler.transform(X_tested)
+    pred = a.predict(test_scaled)[0]
+#    prob = a.predict_proba(test_scaled)[0]
+    return pred
 
-#print(Evaluate())
+
