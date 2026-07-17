@@ -23,6 +23,15 @@ def ReInitData(data_file):
 
    scaler = StandardScaler()
    a = QuadraticDiscriminantAnalysis() 
+
+def InitDefaults():
+     df = pd.read_csv("data.csv")
+     X = df.iloc[:,1:]
+     y = df.iloc[:,0]
+     
+     scaler = StandardScaler()
+     a = QuadraticDiscriminantAnalysis() 
+
 def Sample():
     keys = df.keys()[1:]
     empty_dict = {key: [0.0] for key in keys}
